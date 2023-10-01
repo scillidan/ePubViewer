@@ -163,7 +163,7 @@
     margin: 0 auto;
 }
 
-.app .dictionary-wrapper {
+/*.app .dictionary-wrapper {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
@@ -184,7 +184,7 @@
 
 .app .dictionary-wrapper .dictionary {
     flex: 0 0 auto;
-}
+}*/
 
 .app .dictionary {
     background: #fff;
