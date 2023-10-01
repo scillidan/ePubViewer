@@ -163,8 +163,9 @@
     margin: 0 auto;
 }
 
-/*.app .dictionary-wrapper {
-    display: -webkit-flex;
+.app .dictionary-wrapper {
+    display: none;
+    /*display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
@@ -179,12 +180,12 @@
     height: 200px;
     max-height: 50%;
     min-height: 150px;
-    z-index: 500;
+    z-index: 500;*/
 }
 
 .app .dictionary-wrapper .dictionary {
     flex: 0 0 auto;
-}*/
+}
 
 .app .dictionary {
     background: #fff;
