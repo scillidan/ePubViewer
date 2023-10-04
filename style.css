@@ -184,7 +184,8 @@
 }
 
 .app .dictionary-wrapper .dictionary {
-    flex: 0 0 auto;
+    display: none;
+/*    flex: 0 0 auto;*/
 }
 
 .app .dictionary {
