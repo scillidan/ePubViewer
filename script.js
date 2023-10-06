@@ -123,9 +123,9 @@ App.prototype.doBook = function (url, opts) {
     this.state.rendition.hooks.content.register(this.loadFonts.bind(this));
 
     this.state.rendition.on("relocated", this.onRenditionRelocated.bind(this));
-    this.state.rendition.on("click", this.onRenditionClick.bind(this));
+    // this.state.rendition.on("click", this.onRenditionClick.bind(this));
     this.state.rendition.on("keyup", this.onKeyUp.bind(this));
-    this.state.rendition.on("displayed", this.onRenditionDisplayedTouchSwipe.bind(this));
+    // this.state.rendition.on("displayed", this.onRenditionDisplayedTouchSwipe.bind(this));
     this.state.rendition.on("relocated", this.onRenditionRelocatedUpdateIndicators.bind(this));
     this.state.rendition.on("relocated", this.onRenditionRelocatedSavePos.bind(this));
     this.state.rendition.on("started", this.onRenditionStartedRestorePos.bind(this));
@@ -362,56 +362,56 @@ App.prototype.onKeyUp = function (event) {
     }
 };
 
-App.prototype.onRenditionClick = function (event) {
-    try {
-        if (event.target.tagName.toLowerCase() == "a" && event.target.href) return;
-        if (event.target.parentNode.tagName.toLowerCase() == "a" && event.target.parentNode.href) return;
-        if (window.getSelection().toString().length !== 0) return;
-        if (this.state.rendition.manager.getContents()[0].window.getSelection().toString().length !== 0) return;
-    } catch (err) {}
+// App.prototype.onRenditionClick = function (event) {
+//     try {
+//         if (event.target.tagName.toLowerCase() == "a" && event.target.href) return;
+//         if (event.target.parentNode.tagName.toLowerCase() == "a" && event.target.parentNode.href) return;
+//         if (window.getSelection().toString().length !== 0) return;
+//         if (this.state.rendition.manager.getContents()[0].window.getSelection().toString().length !== 0) return;
+//     } catch (err) {}
 
-    let wrapper = this.state.rendition.manager.container;
-    let third = wrapper.clientWidth / 3;
-    let x = event.pageX - wrapper.scrollLeft;
-    let b = null;
-    if (x > wrapper.clientWidth - 20) {
-        event.preventDefault();
-        this.doSidebar();
-    } else if (x < third) {
-        event.preventDefault();
-        this.state.rendition.prev();
-        b = this.qs(".bar button.prev");
-    } else if (x > (third * 2)) {
-        event.preventDefault();
-        this.state.rendition.next();
-        b = this.qs(".bar button.next");
-    }
-    if (b) {
-        b.style.transform = "scale(1.15)";
-        window.setTimeout(() => b.style.transform = "", 150);
-    }
-};
+//     let wrapper = this.state.rendition.manager.container;
+//     let third = wrapper.clientWidth / 3;
+//     let x = event.pageX - wrapper.scrollLeft;
+//     let b = null;
+//     if (x > wrapper.clientWidth - 20) {
+//         event.preventDefault();
+//         this.doSidebar();
+//     } else if (x < third) {
+//         event.preventDefault();
+//         this.state.rendition.prev();
+//         b = this.qs(".bar button.prev");
+//     } else if (x > (third * 2)) {
+//         event.preventDefault();
+//         this.state.rendition.next();
+//         b = this.qs(".bar button.next");
+//     }
+//     if (b) {
+//         b.style.transform = "scale(1.15)";
+//         window.setTimeout(() => b.style.transform = "", 150);
+//     }
+// };
 
-App.prototype.onRenditionDisplayedTouchSwipe = function (event) {
-    let start = null
-    let end = null;
-    const el = event.document.documentElement;
+// App.prototype.onRenditionDisplayedTouchSwipe = function (event) {
+//     let start = null
+//     let end = null;
+//     const el = event.document.documentElement;
 
-    el.addEventListener('touchstart', event => {
-        start = event.changedTouches[0];
-    });
-    el.addEventListener('touchend', event => {
-        end = event.changedTouches[0];
+//     el.addEventListener('touchstart', event => {
+//         start = event.changedTouches[0];
+//     });
+//     el.addEventListener('touchend', event => {
+//         end = event.changedTouches[0];
 
-        let hr = (end.screenX - start.screenX) / el.getBoundingClientRect().width;
-        let vr = (end.screenY - start.screenY) / el.getBoundingClientRect().height;
+//         let hr = (end.screenX - start.screenX) / el.getBoundingClientRect().width;
+//         let vr = (end.screenY - start.screenY) / el.getBoundingClientRect().height;
 
-        if (hr > vr && hr > 0.25) return this.state.rendition.prev();
-        if (hr < vr && hr < -0.25) return this.state.rendition.next();
-        if (vr > hr && vr > 0.25) return;
-        if (vr < hr && vr < -0.25) return;
-    });
-};
+//         if (hr > vr && hr > 0.25) return this.state.rendition.prev();
+//         if (hr < vr && hr < -0.25) return this.state.rendition.next();
+//         if (vr > hr && vr > 0.25) return;
+//         if (vr < hr && vr < -0.25) return;
+//     });
+// };
 
 App.prototype.applyTheme = function () {
     let theme = {
